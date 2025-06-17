@@ -1,0 +1,29 @@
+@use './_variables.scss';
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+}
+
+h1 {
+  all: unset;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  color: var(--text-main);
+  background: var(--bg-main);
+  transition:
+    color var(--transition-basic),
+    background-color var(--transition-basic);
+  font-family: var(--font-family);
+  font-weight: var(--font-weight-medium);
+  // line-height: 1.5;
+  margin: 0;
+  padding: 0;
+}
