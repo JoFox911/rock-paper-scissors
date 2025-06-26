@@ -1,20 +1,21 @@
 :root {
-  --transition-basic: 0.5s ease;
+  --transition-basic: 0.3s ease;
 
   /* Colors */
   // Backgrounds
   --bg-main: radial-gradient( hsl(214, 47%, 23%), hsl(237, 49%, 15%));
+  --bg-white: rgb(234 234 234);
 
-  --bg-scissors: hsl(39, 89%, 49%);
-  --bg-scissors-additional: hsl(40, 84%, 53%);
-  --bg-paper: hsl(230, 89%, 62%);
-  --bg-paper-additional: hsl(230, 89%, 65%);
-  --bg-rock: hsl(349, 71%, 52%);
-  --bg-rock-additional: hsl(349, 70%, 56%);
-  --bg-lizard: hsl(261, 73%, 60%);
-  --bg-lizard-additional: hsl(261, 72%, 63%);
-  --bg-spock: hsl(189, 59%, 53%);
-  --bg-spock-additional: hsl(189, 58%, 57%);
+  --choice-scissors: hsl(40, 84%, 53%);
+  --choice-scissors-additional: hsl(39, 89%, 49%);
+  --choice-paper: hsl(230, 89%, 65%);
+  --choice-paper-additional: hsl(230, 89%, 62%);
+  --choice-rock: hsl(349, 70%, 56%);
+  --choice-rock-additional: hsl(349, 71%, 52%);
+  --choice-lizard: hsl(261, 73%, 63%);
+  --choice-lizard-additional: hsl(261, 72%, 60%);
+  --choice-spock: hsl(189, 59%, 57%);
+  --choice-spock-additional: hsl(189, 58%, 53%);
 
   // Text
   --text-main: #fafcff;

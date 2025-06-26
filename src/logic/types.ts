@@ -1,3 +1,4 @@
+
 export const GameStepEnum = {
   Start: 'start',
   Picked: 'picked',

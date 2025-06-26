@@ -1,16 +1,3 @@
-<script setup lang="ts">
-import { ref } from 'vue'
-
-import GameStart from './components/GameStart.vue'
-import GamePlay from './components/GamePlay.vue'
-import ResultDisplay from './components/ResultDisplay.vue'
-import ScoreBoard from './components/ScoreBoard.vue'
-
-import {type GameStep, GameStepEnum} from './logic/rules'
-
-const step = ref<GameStep>(GameStepEnum.Start);
-</script>
-
 <template>
   <div class="app">
     <header>
@@ -31,6 +18,33 @@ const step = ref<GameStep>(GameStepEnum.Start);
     </main>
   </div>
 </template>
+
+<script setup lang="ts">
+import { ref, provide, onMounted, watch } from 'vue'
+
+import GameStart from '@/modules/GameStart/GameStart.vue'
+import GamePlay from '@/modules/GamePlay/GamePlay.vue'
+import ResultDisplay from '@/modules/GameResult/ResultDisplay.vue'
+import ScoreBoard from '@/components/ScoreBoard.vue'
+
+import {type GameStep, GameStepEnum} from '@/logic/types'
+
+const SCORE_KEY = 'rpsls-score'
+const score = ref(0)
+
+const step = ref<GameStep>(GameStepEnum.Start);
+
+onMounted(() => {
+  const stored = localStorage.getItem(SCORE_KEY)
+  if (stored) score.value = parseInt(stored)
+})
+
+watch(score, (newVal) => {
+  localStorage.setItem(SCORE_KEY, newVal.toString())
+})
+
+provide('score', score)
+</script>
 
 <style scoped>
 .app{
