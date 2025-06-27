@@ -17,3 +17,11 @@ export const ChoiceEnum = {
 } as const;
 
 export type Choice = typeof ChoiceEnum[keyof typeof ChoiceEnum];
+
+export const ResultEnum = {
+  Win: 'win',
+  Lose: 'lose',
+  Draw: 'draw'
+} as const;
+
+export type Result = typeof ResultEnum[keyof typeof ResultEnum];

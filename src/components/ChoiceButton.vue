@@ -1,27 +1,29 @@
 <template>
   <button
+    v-if="type"
     class="choice-btn"
-    :class="type.toLowerCase()"
+    :class="[type.toLowerCase(), size]"
   >
     <div class="inner">
       <img :src="`/icons/icon-${type.toLowerCase()}.svg`" :alt="type" />
     </div>
   </button>
+  <div v-else class="empty" :class="size" />
 </template>
 
 <script setup lang="ts">
 import type { Choice } from '@/logic/types'
 
 defineProps<{
-  type: Choice
+  type: Choice | null,
+  size: 'small' | 'medium'
 }>()
 </script>
 
 <style scoped lang="scss">
 .choice-btn {
-  border: 16px solid;
+  border-style: solid;
   border-radius: 50%;
-  padding: 1.5rem;
   background: var(--bg-white);
   transition: transform var(--transition-basic) ease;
 
@@ -46,9 +48,27 @@ defineProps<{
     box-shadow: 0 6px var(--choice-spock-additional);
   }
 
+  &.small {
+    border-width: 16px;
+    padding: 24px;
+
+    .inner {
+      width: 55px;
+      height: 55px;
+    }
+  }
+
+  &.medium {
+    border-width: 32px;
+    padding: 44px;
+
+    .inner {
+      width: 120px;
+      height: 120px;
+    }
+  }
+
   .inner {
-    width: 55px;
-    height: 55px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -59,6 +79,22 @@ defineProps<{
       object-fit: contain;
       transition: transform var(--transition-basic) ease;
     }
+  }
+}
+
+.empty {
+  margin: 40px;
+  background: #04040424;
+  border-radius: 50%;
+
+  &.small {
+    width: 135px;
+    height: 135px;
+  }
+
+  &.medium {
+    width: 192px;
+    height: 192px;
   }
 }
 </style>
