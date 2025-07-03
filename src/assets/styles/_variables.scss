@@ -56,7 +56,9 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
-  :root {
-    --transition-basic: 0s !important;
+  * {
+    transition: none;
+    animation: none;
+    scroll-behavior: auto;
   }
 }
