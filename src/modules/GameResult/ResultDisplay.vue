@@ -1,7 +1,7 @@
 <template>
   <GamePlay :player-pick="playerPick" :house-pick="housePick">
     <div class="result-info">
-      <div class="result-text">{{displayedText}}</div>
+      <h2 class="result-text">{{ resultText }}</h2>
       <CustomButton label="Play again" variant="filled" @press="$emit('restart')"/>
     </div>
   </GamePlay>
@@ -21,15 +21,15 @@ const props = defineProps<{
   gameResult: Result | null
 }>()
 
-const displayedText = computed(() => {
+const resultText = computed(() => {
   if (!props.gameResult) return '';
   switch (props.gameResult) {
     case ResultEnum.Win:
-      return 'You Win!';
+      return 'You Win';
     case ResultEnum.Lose:
       return 'You Lose';
     case ResultEnum.Draw:
-      return 'It\'s a Draw!';
+      return 'It\'s a Draw';
     default:
       return '';
   }
@@ -52,5 +52,6 @@ const displayedText = computed(() => {
   font-size: var(--font-size-xxl);
   font-weight: var(--font-weight-bold);
   text-wrap: nowrap;
+  text-align: center;
 }
 </style>

@@ -7,10 +7,6 @@
   margin: 0;
 }
 
-h1 {
-  all: unset;
-}
-
 html {
   scroll-behavior: smooth;
 }
@@ -23,7 +19,6 @@ body {
     background-color var(--transition-basic);
   font-family: var(--font-family);
   font-weight: var(--font-weight-medium);
-  // line-height: 1.5;
   margin: 0;
   padding: 0;
 }

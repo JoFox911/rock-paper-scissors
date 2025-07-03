@@ -1,5 +1,5 @@
 <template>
-  <ChoiceGrid @pick="choice => $emit('pick', choice)"/>
+  <ChoiceGrid @pick="choice => $emit('pick', choice)" />
 </template>
 
 <script setup lang="ts">
@@ -8,5 +8,3 @@ import { type Choice } from '@/logic/types'
 
 defineEmits<{ (e: 'pick', choice: Choice): void }>()
 </script>
-
-<style scoped></style>

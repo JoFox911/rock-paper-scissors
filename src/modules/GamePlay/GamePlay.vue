@@ -38,7 +38,6 @@ defineProps<{
   align-items: center;
   width: 100%;
   margin: 0 auto;
-  gap: 80px;
 
   font-size: 1.375rem;
   line-height: 1.55rem;
@@ -58,6 +57,16 @@ defineProps<{
 
   @media (max-width: 768px) {
     flex-wrap: wrap;
+    gap: 0;
+
+    font-size: 0.75rem;
+    line-height: 1rem;
+    font-weight: 500;
+
+    .player-pick {
+      gap: 20px;
+      flex-direction: column-reverse;
+    }
 
     .player-pick:first-of-type {
       width: 50%;
@@ -72,6 +81,7 @@ defineProps<{
     .extra {
       width: 100%;
       order: 3;
+      padding-top: 50px;
     }
   }
 }

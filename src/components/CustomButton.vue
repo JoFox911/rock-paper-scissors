@@ -38,7 +38,7 @@ defineEmits(['press'])
   text-transform: uppercase;
 
   @media (max-width: 768px) {
-    padding: var(--spacing-xxs) var(--spacing-lg);
+    padding: var(--spacing-xs) var(--spacing-lg);
     font-size: var(--font-size-xs);
     letter-spacing: 0.05rem;
   }

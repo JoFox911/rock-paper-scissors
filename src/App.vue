@@ -5,15 +5,18 @@
     </header>
 
     <main class="app-main">
-      <GameStart v-if="step === GameStepEnum.Start" @pick="handlePick"/>
+      <GameStart v-if="step === GameStepEnum.Start" @pick="handlePick" />
       <GamePlay v-if="step === GameStepEnum.Picked" :player-pick="playerPick" :house-pick="housePick" />
-      <GamePlay v-if="step === GameStepEnum.Revealed" :player-pick="playerPick" :house-pick="housePick"/>
-      <ResultDisplay v-if="step === GameStepEnum.Result" :player-pick="playerPick" :house-pick="housePick" :game-result="gameResult" @restart="restart"/>
+      <GamePlay v-if="step === GameStepEnum.Revealed" :player-pick="playerPick" :house-pick="housePick" />
+      <ResultDisplay v-if="step === GameStepEnum.Result" :player-pick="playerPick" :house-pick="housePick"
+        :game-result="gameResult" @restart="restart" />
     </main>
 
     <footer class="app-footer">
       <CustomButton label="Rules" variant="outline" @press="showRulesModal" />
     </footer>
+
+    <RulesModal v-if="showModal" @close="showModal = false" />
   </div>
 </template>
 
@@ -25,12 +28,14 @@ import GamePlay from '@/modules/GamePlay/GamePlay.vue'
 import ResultDisplay from '@/modules/GameResult/ResultDisplay.vue'
 import ScoreBoard from '@/components/ScoreBoard.vue'
 import CustomButton from '@/components/CustomButton.vue'
+import RulesModal from '@/components/RulesModal.vue'
 
 import {
   type GameStep, GameStepEnum,
-  type Choice, ChoiceEnum,
-  type Result, ResultEnum
+  type Result, ResultEnum,
+  type Choice
 } from '@/logic/types'
+import { getResult, getRandomChoice } from '@/logic/rules'
 
 const SCORE_KEY = 'rpsls-score'
 const score = ref(0)
@@ -39,6 +44,11 @@ const step = ref<GameStep>(GameStepEnum.Start);
 const playerPick = ref<Choice | null>(null)
 const housePick = ref<Choice | null>(null)
 const gameResult = ref<Result | null>(null)
+
+const showModal = ref(false)
+function showRulesModal() {
+  showModal.value = true
+}
 
 onMounted(() => {
   const stored = localStorage.getItem(SCORE_KEY)
@@ -71,36 +81,11 @@ function checkResults() {
   }, 1000)
 }
 
-
-function getResult(player: Choice, house: Choice): Result {
-  if (player === house) return ResultEnum.Draw
-
-  const winningCombinations: Record<Choice, Choice[]> = {
-    [ChoiceEnum.Rock]: [ChoiceEnum.Scissors, ChoiceEnum.Lizard],
-    [ChoiceEnum.Paper]: [ChoiceEnum.Rock, ChoiceEnum.Spock],
-    [ChoiceEnum.Scissors]: [ChoiceEnum.Paper, ChoiceEnum.Lizard],
-    [ChoiceEnum.Lizard]: [ChoiceEnum.Spock, ChoiceEnum.Paper],
-    [ChoiceEnum.Spock]: [ChoiceEnum.Scissors, ChoiceEnum.Rock],
-  }
-
-  return winningCombinations[player].includes(house) ? ResultEnum.Win : ResultEnum.Lose
-}
-
-function getRandomChoice(): Choice {
-  const choices = Object.values(ChoiceEnum).filter(value => typeof value === 'string') as Choice[]
-  const randomIndex = Math.floor(Math.random() * choices.length)
-  return choices[randomIndex]
-}
-
 function restart() {
   playerPick.value = null
   housePick.value = null
   gameResult.value = null
   step.value = GameStepEnum.Start
-}
-
-function showRulesModal() {
-
 }
 
 provide('score', score)
@@ -121,6 +106,7 @@ provide('score', score)
   padding: 40px 40px 0;
   width: 100%;
   max-width: 780px;
+
   @media (max-width: 768px) {
     padding: 28px;
   }
@@ -131,12 +117,8 @@ provide('score', score)
   display: flex;
   justify-content: center;
   align-items: center;
-  // width: 100%;
-  // max-width: 780px;
-  // padding: var(--spacing-lg);
-  // @media (max-width: 768px) {
-  //   padding: var(--spacing-md);
-  // }
+  width: 100%;
+  max-width: 1000px;
 }
 
 .app-footer {
@@ -150,8 +132,8 @@ provide('score', score)
 
   @media (max-width: 768px) {
     position: relative;
-  justify-content: center;
-  padding: var(--spacing-md);
+    justify-content: center;
+    padding: var(--spacing-md);
   }
 }
 </style>

@@ -1,9 +1,5 @@
 <template>
-  <button
-    v-if="type"
-    class="choice-button"
-    :class="[type.toLowerCase(), size]"
-  >
+  <button v-if="type" class="choice-button" :class="[type.toLowerCase(), size]">
     <div class="choice-button__inner">
       <img :src="`icons/icon-${type.toLowerCase()}.svg`" :alt="type" />
     </div>
@@ -91,12 +87,13 @@ defineProps<{
     }
 
     &.medium {
-      border-width: 18px;
-      padding: 36px;
+      border-width: 15px;
+      padding: 22px;
+      --shadow-offset-y: 3px;
 
       .choice-button__inner {
-        width: 60px;
-        height: 60px;
+        width: 56px;
+        height: 56px;
       }
     }
   }
@@ -127,6 +124,20 @@ defineProps<{
     &.medium {
       width: 192px;
       height: 192px;
+    }
+
+    @media (max-width: 768px) {
+      margin: 0;
+
+      &.small {
+        width: 92px;
+        height: 92px;
+      }
+
+      &.medium {
+        width: 130px;
+        height: 130px;
+      }
     }
   }
 }

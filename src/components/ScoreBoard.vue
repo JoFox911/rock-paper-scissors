@@ -1,7 +1,7 @@
 <template>
   <div class="score-board">
     <div class="score-board__logo">
-      <img src="/logo.svg" alt="Rock Paper Scissors Lizard Spock Logo" />
+      <img src="/images/logo.svg" alt="Rock Paper Scissors Lizard Spock Logo" />
     </div>
 
     <div class="score-board__score">
