@@ -3,18 +3,18 @@
     <div class="player-pick">
       <p>You Picked</p>
       <div class="choice">
-        <ChoiceButton size="medium" :type="playerPick" />
+        <ChoiceButton :type="playerPick" size="medium" :is-winner="gameResult === ResultEnum.Win" />
       </div>
     </div>
 
     <div class="extra">
-       <slot />
+      <slot />
     </div>
 
     <div class="player-pick">
       <p>The House Picked</p>
       <div class="choice">
-        <ChoiceButton size="medium" :type="housePick" />
+        <ChoiceButton :type="housePick" size="medium" :is-winner="gameResult === ResultEnum.Lose" />
       </div>
     </div>
   </div>
@@ -24,10 +24,12 @@
 <script setup lang="ts">
 import ChoiceButton from '@/components/ChoiceButton.vue'
 import type { Choice } from '@/logic/types'
+import { ResultEnum, type Result } from '@/logic/types'
 
 defineProps<{
   playerPick: Choice | null,
   housePick: Choice | null
+  gameResult: Result | null
 }>()
 </script>
 

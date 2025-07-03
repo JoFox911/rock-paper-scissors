@@ -6,8 +6,10 @@
 
     <main class="app-main">
       <GameStart v-if="step === GameStepEnum.Start" @pick="handlePick" />
-      <GamePlay v-if="step === GameStepEnum.Picked" :player-pick="playerPick" :house-pick="housePick" />
-      <GamePlay v-if="step === GameStepEnum.Revealed" :player-pick="playerPick" :house-pick="housePick" />
+      <GamePlay v-if="step === GameStepEnum.Picked" :player-pick="playerPick" :house-pick="housePick"
+        :game-result="gameResult" />
+      <GamePlay v-if="step === GameStepEnum.Revealed" :player-pick="playerPick" :house-pick="housePick"
+        :game-result="gameResult" />
       <ResultDisplay v-if="step === GameStepEnum.Result" :player-pick="playerPick" :house-pick="housePick"
         :game-result="gameResult" @restart="restart" />
     </main>
@@ -124,8 +126,8 @@ provide('score', score)
 .app-footer {
   position: fixed;
   bottom: 0;
-  left: 0;
-  width: 100%;
+  right: 0;
+  width: fit-content;
   display: flex;
   justify-content: flex-end;
   padding: var(--spacing-xl);

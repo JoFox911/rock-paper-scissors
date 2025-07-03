@@ -1,5 +1,6 @@
 <template>
-  <button v-if="type" class="choice-button" :class="[type.toLowerCase(), size]">
+  <!-- {{ isWinner }} -->
+  <button v-if="type" class="choice-button" :class="[type.toLowerCase(), size, { 'is-winner': isWinner }]">
     <div class="choice-button__inner">
       <img :src="`icons/icon-${type.toLowerCase()}.svg`" :alt="type" />
     </div>
@@ -13,7 +14,8 @@ import type { Choice } from '@/logic/types'
 
 defineProps<{
   type: Choice | null
-  size: 'small' | 'medium'
+  size: 'small' | 'medium',
+  isWinner?: boolean
 }>()
 </script>
 
@@ -139,6 +141,52 @@ defineProps<{
         height: 130px;
       }
     }
+  }
+
+  &.is-winner {
+    position: relative;
+
+    &::before,
+    &::after {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      border-radius: 50%;
+      z-index: -1;
+      animation: pulse 3s infinite;
+      opacity: 0.6;
+    }
+
+    &::before {
+      width: 200%;
+      height: 200%;
+      background-color: rgba(255, 255, 255, 0.2);
+    }
+
+    &::after {
+      width: 150%;
+      height: 150%;
+      background-color: rgba(255, 255, 255, 0.3);
+    }
+  }
+}
+
+@keyframes pulse {
+  0% {
+    transform: translate(-50%, -50%) scale(0.9);
+    opacity: 0.6;
+  }
+
+  90% {
+    transform: translate(-50%, -50%) scale(1.2);
+    opacity: 0;
+  }
+
+  100% {
+    transform: translate(-50%, -50%) scale(0.9);
+    opacity: 0;
   }
 }
 </style>
