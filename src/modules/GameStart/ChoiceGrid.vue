@@ -26,6 +26,11 @@ defineEmits<{ (e: 'pick', choice: Choice): void }>()
   background-position: center;
   background-size: 75%;
 
+  @media (max-width: 768px) {
+    width: min(calc(100vw - 20vw), calc(100vh - 30vh));
+    height: min(calc(100vw - 20vw), calc(100vh - 30vh));
+  }
+
   .choice {
     cursor: pointer;
   }

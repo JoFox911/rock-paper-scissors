@@ -22,7 +22,7 @@ defineEmits(['press'])
 
 .custom-button {
   text-align: center;
-  border-radius: var(--border-radius);
+  border-radius: var(--border-radius-md);
   padding: var(--spacing-sm) var(--spacing-xl);
   transition:
     background-color var(--transition-basic),
@@ -30,10 +30,18 @@ defineEmits(['press'])
     box-shadow var(--transition-basic);
   user-select: none;
   cursor: pointer;
-  line-height: var(--font-size-sm);
+  line-height: var(--font-size-md);
   font-size: var(--font-size-sm);
-  font-weight: var(--font-weight-medium);
+  letter-spacing: 0.125rem;
+  font-weight: var(--font-weight-light);
   text-wrap: nowrap;
+  text-transform: uppercase;
+
+  @media (max-width: 768px) {
+    padding: var(--spacing-xxs) var(--spacing-lg);
+    font-size: var(--font-size-xs);
+    letter-spacing: 0.05rem;
+  }
 }
 
 .filled {
@@ -42,7 +50,8 @@ defineEmits(['press'])
 }
 
 .outline {
-  background-color: var(--bg-white);
-  color: var(--text-dark)
+  background-color: transparent;
+  border: var(--bg-white) 1px solid;
+  color: var(--bg-white);
 }
 </style>

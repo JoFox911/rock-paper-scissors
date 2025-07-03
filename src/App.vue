@@ -4,12 +4,16 @@
       <ScoreBoard />
     </header>
 
-    <main>
+    <main class="app-main">
       <GameStart v-if="step === GameStepEnum.Start" @pick="handlePick"/>
       <GamePlay v-if="step === GameStepEnum.Picked" :player-pick="playerPick" :house-pick="housePick" />
       <GamePlay v-if="step === GameStepEnum.Revealed" :player-pick="playerPick" :house-pick="housePick"/>
       <ResultDisplay v-if="step === GameStepEnum.Result" :player-pick="playerPick" :house-pick="housePick" :game-result="gameResult" @restart="restart"/>
     </main>
+
+    <footer class="app-footer">
+      <CustomButton label="Rules" variant="outline" @press="showRulesModal" />
+    </footer>
   </div>
 </template>
 
@@ -20,6 +24,7 @@ import GameStart from '@/modules/GameStart/GameStart.vue'
 import GamePlay from '@/modules/GamePlay/GamePlay.vue'
 import ResultDisplay from '@/modules/GameResult/ResultDisplay.vue'
 import ScoreBoard from '@/components/ScoreBoard.vue'
+import CustomButton from '@/components/CustomButton.vue'
 
 import {
   type GameStep, GameStepEnum,
@@ -94,6 +99,10 @@ function restart() {
   step.value = GameStepEnum.Start
 }
 
+function showRulesModal() {
+
+}
+
 provide('score', score)
 </script>
 
@@ -109,8 +118,40 @@ provide('score', score)
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 40px;
+  padding: 40px 40px 0;
   width: 100%;
   max-width: 780px;
+  @media (max-width: 768px) {
+    padding: 28px;
+  }
+}
+
+.app-main {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  // width: 100%;
+  // max-width: 780px;
+  // padding: var(--spacing-lg);
+  // @media (max-width: 768px) {
+  //   padding: var(--spacing-md);
+  // }
+}
+
+.app-footer {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+  padding: var(--spacing-xl);
+
+  @media (max-width: 768px) {
+    position: relative;
+  justify-content: center;
+  padding: var(--spacing-md);
+  }
 }
 </style>

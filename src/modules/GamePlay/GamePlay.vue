@@ -56,8 +56,23 @@ defineProps<{
     height: 100%;
   }
 
-  .extra {
+  @media (max-width: 768px) {
+    flex-wrap: wrap;
 
+    .player-pick:first-of-type {
+      width: 50%;
+      order: 1;
+    }
+
+    .player-pick:last-of-type {
+      width: 50%;
+      order: 2;
+    }
+
+    .extra {
+      width: 100%;
+      order: 3;
+    }
   }
 }
 </style>

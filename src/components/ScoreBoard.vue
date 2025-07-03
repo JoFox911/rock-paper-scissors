@@ -1,19 +1,14 @@
 <template>
-  <div class="score-board-container">
-    <div class="title">
-      <p>Rock</p>
-      <p>Paper</p>
-      <p>Scissors</p>
-      <p>Lizard</p>
-      <p>Spock</p>
+  <div class="score-board">
+    <div class="score-board__logo">
+      <img src="/logo.svg" alt="Rock Paper Scissors Lizard Spock Logo" />
     </div>
 
-    <div class="score-container">
-      <div class="score-label">Score</div>
-      <div class="score-value">{{ score }}</div>
+    <div class="score-board__score">
+      <div class="score-board__label">Score</div>
+      <div class="score-board__value">{{ score }}</div>
     </div>
   </div>
-
 </template>
 
 <script setup lang="ts">
@@ -23,47 +18,73 @@ const score = inject('score') as Ref<number>
 </script>
 
 <style scoped lang="scss">
-.score-board-container {
+.score-board {
   display: flex;
-  flex-direction: row;
-  align-items: center;
   justify-content: space-between;
-  padding: 14px 30px;
+  align-items: center;
+  padding: var(--spacing-sm) var(--spacing-lg);
   width: 100%;
-  border: var(--header-outline) 3px solid;
-  border-radius: 16px;
+  border: 3px solid var(--header-outline);
+  border-radius: var(--border-radius-xl, 1rem);
 
-  .title {
-    font-size: 1.75rem;
-    line-height: 1.55rem;
-    font-weight: 600;
-    display: flex;
-    flex-direction: column;
-    text-transform: uppercase;
+  @media (max-width: 768px) {
+    padding: var(--spacing-xs) var(--spacing-sm);
+    border-radius: var(--border-radius-md);
   }
 
-  .score-container {
+  &__logo {
+    display: flex;
+    align-items: center;
+
+    img {
+      width: 120px;
+      height: 120px;
+
+      @media (max-width: 768px) {
+        width: auto;
+        height: 60px;
+      }
+    }
+  }
+
+  &__score {
+    background: var(--bg-white);
+    padding: var(--spacing-sm) var(--spacing-md);
+    border-radius: calc(var(--border-radius-md) / 2);
+    text-align: center;
     display: flex;
     flex-direction: column;
-    padding: 16px 44px;
-    background: var(--bg-white);
-    border-radius: 4px;
-    text-align: center;
 
-    .score-label {
-      color: var(--text-score);
-      text-transform: uppercase;
-      letter-spacing: 0.125rem;
-      font-size: 1.125rem;
-      line-height: 1rem;
-      font-weight: 600;
+    @media (max-width: 768px) {
+      padding: var(--spacing-xs) var(--spacing-md);
     }
+  }
 
-    .score-value {
-      color: var(--text-dark);
-      font-size: 4.5rem;
-      line-height: 4.5rem;
-      font-weight: 700;
+
+  &__label {
+    color: var(--text-score);
+    text-transform: uppercase;
+    letter-spacing: 0.125rem;
+    font-size: var(--font-size-sm);
+    font-weight: var(--font-weight-medium);
+    line-height: 1.2rem;
+
+    @media (max-width: 768px) {
+      font-size: var(--font-size-xxs);
+      line-height: var(--font-size-xxs);
+      letter-spacing: 0.05rem;
+    }
+  }
+
+  &__value {
+    color: var(--text-dark);
+    font-size: var(--font-size-xxxl);
+    font-weight: var(--font-weight-bold);
+    line-height: var(--line-height);
+
+    @media (max-width: 768px) {
+      font-size: var(--font-size-xxl);
+      line-height: var(--font-size-xxl);
     }
   }
 }

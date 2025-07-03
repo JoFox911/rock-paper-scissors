@@ -28,11 +28,13 @@
   /* ✍️ Typography */
   --font-family: "Barlow Semi Condensed", sans-serif;
 
+  --font-weight-light: 500;
   --font-weight-medium: 600;
   --font-weight-bold: 700;
 
+  --font-size-xxs: 0.625rem;
   --font-size-xs: 0.75rem;
-  --font-size-sm: 1rem;
+  --font-size-sm: 1.125rem;
   --font-size-md: 1.25rem;
   --font-size-lg: 1.75rem;
   --font-size-xl: 2rem;
@@ -50,5 +52,6 @@
   --spacing-xl: 2.5rem;
 
   /* 🟦 Radius */
-  --border-radius: 0.5rem;
+  --border-radius-md: 0.5rem;
+  --border-radius-xl: 1rem;
 }
