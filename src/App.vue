@@ -1,6 +1,7 @@
 <template>
   <div class="app">
     <header class="app-header">
+      <h1 class="visually-hidden">Rock Paper Scissors Lizard Spock Game</h1>
       <ScoreBoard />
     </header>
 
@@ -137,5 +138,17 @@ provide('score', score)
     justify-content: center;
     padding: var(--spacing-md);
   }
+}
+
+.visually-hidden {
+  position: absolute !important;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+  border: 0;
 }
 </style>

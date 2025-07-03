@@ -1,10 +1,9 @@
 <template>
-  <!-- {{ isWinner }} -->
-  <button v-if="type" class="choice-button" :class="[type.toLowerCase(), size, { 'is-winner': isWinner }]">
+  <div v-if="type" class="choice-button" :class="[type.toLowerCase(), size, { 'is-winner': isWinner }]">
     <div class="choice-button__inner">
       <img :src="`icons/icon-${type.toLowerCase()}.svg`" :alt="type" />
     </div>
-  </button>
+  </div>
 
   <div v-else class="choice-button__empty" :class="size" />
 </template>

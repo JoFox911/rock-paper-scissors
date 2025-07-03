@@ -54,3 +54,9 @@
   --border-radius-md: 0.5rem;
   --border-radius-xl: 1rem;
 }
+
+@media (prefers-reduced-motion: reduce) {
+  :root {
+    --transition-basic: 0s !important;
+  }
+}

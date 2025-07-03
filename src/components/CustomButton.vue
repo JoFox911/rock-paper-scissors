@@ -1,14 +1,13 @@
 <template>
-  <div
+  <button
     class="custom-button"
     :class="variant"
-    role="button"
+    type="button"
     @click="$emit('press')"
   >
     {{ label }}
-  </div>
+  </button>
 </template>
-
 <script setup lang="ts">
 defineProps<{
   label: string

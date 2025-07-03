@@ -2,7 +2,7 @@
   <GamePlay :player-pick="playerPick" :house-pick="housePick" :game-result="gameResult">
     <div class="result-info">
       <h2 class="result-text">{{ resultText }}</h2>
-      <CustomButton label="Play again" variant="filled" @press="$emit('restart')"/>
+      <CustomButton label="Play again" variant="filled" @press="$emit('restart')" />
     </div>
   </GamePlay>
 </template>
